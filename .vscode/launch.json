@@ -8,7 +8,7 @@
       "program": "${workspaceFolder}\\bin\\${fileBasenameNoExtension}.exe",
       "args": [], 
       "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceFolder}\\src",
       "environment": [],
       "externalConsole": true, 
       "MIMode": "gdb",

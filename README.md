@@ -11,7 +11,8 @@
 
 ```txt
 DataStruct
-│  xxx.c                           # 具体的C语言单文件
+│      
+├─src                              # 源代码文件夹(单C/C++文件)
 │  
 ├─.vscode                          # vscode 配置文件夹
 │      c_cpp_properties.json       # C/C++ 插件智能感知配置
