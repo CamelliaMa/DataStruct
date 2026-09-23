@@ -35,6 +35,9 @@ typedef struct node{
 }String_3;
 
 
+/*
+* 主函数 -- 程序入口
+*/
 int main(){
     printf("hello");
     return 0;

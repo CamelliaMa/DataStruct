@@ -17,7 +17,9 @@ typedef struct{
     int stackTop;             // 栈顶指针 -- 指向栈顶,初始化为0
 }SeqStack;
 
-// 初始化顺序栈
+/*
+* 初始化顺序栈 -- 动态分配内存并初始化栈顶指针
+*/
 SeqStack* init_SeqStack(){
     // 申请栈内存
     SeqStack* stack  = (SeqStack *)malloc(sizeof(SeqStack));
@@ -36,17 +38,27 @@ SeqStack* init_SeqStack(){
     return stack;
 }
 
-// 检查栈是否已满
+/*
+* 判断顺序栈是否已满
+* @param stack 操作的顺序栈
+*/
 int stack_IsFull(SeqStack* stack){
     return (stack->stackTop == MAX_SIZE) ? SUCCESS : FAILURE;
 }
 
-// 检查栈是否为空
+/*
+* 判断顺序栈是否为空
+* @param stack 操作的顺序栈
+*/
 int stack_IsEmpty(SeqStack* stack){
     return (stack->stackTop == 0) ? SUCCESS : FAILURE;
 }
 
-// 入栈
+/*
+* 元素入栈
+* @param stack 操作的顺序栈
+* @param push_data 入栈的数据元素
+*/
 int push_SeqStack(SeqStack* stack, ELEMENT_TYPE push_data){
     // 检查栈是否已满
     if(stack_IsFull(stack)){
@@ -63,7 +75,11 @@ int push_SeqStack(SeqStack* stack, ELEMENT_TYPE push_data){
     return SUCCESS;
 }
 
-// 出栈
+/*
+* 元素出栈
+* @param stack 操作的顺序栈
+* @param pop_data 用于接收出栈的元素
+*/
 int pop_SeqStack(SeqStack* stack, ELEMENT_TYPE* pop_data){
     // 检查是不是空栈
     if(stack_IsEmpty(stack)){
@@ -80,7 +96,11 @@ int pop_SeqStack(SeqStack* stack, ELEMENT_TYPE* pop_data){
     return SUCCESS;
 }
 
-// 获取栈顶元素
+/*
+* 获取顺序栈的栈顶元素
+* @param stack 操作的顺序栈
+* @param top_value 用于接收栈顶元素
+*/
 int select_SeqStackTop(SeqStack* stack,ELEMENT_TYPE* top_value){
     if(stack_IsEmpty(stack)){
         printf("栈为空!\n");
@@ -90,7 +110,10 @@ int select_SeqStackTop(SeqStack* stack,ELEMENT_TYPE* top_value){
     return SUCCESS;
 }
 
-// 释放栈内存
+/*
+* 释放顺序栈占用的内存
+* @param stack 待释放的顺序栈
+*/
 void free_SeqStack(SeqStack* stack){
     if(stack->data != NULL){
         free(stack->data);
@@ -115,7 +138,10 @@ void free_SeqStack(SeqStack* stack){
     "({[[}]]})"     -->    FAILURE
 */
 
-// 括号匹配算法
+/*
+* 括号匹配算法 -- 使用顺序栈检查括号序列是否合法
+* @param backets 待检查的括号字符串
+*/
 int backets_match(char backets[]){
     // 计算字符串长度
     /*
@@ -151,12 +177,18 @@ int backets_match(char backets[]){
 
 /*======================================> 中缀表达式转后缀表达式算法 <======================================*/
 
-// 辅助函数 -- 判断字符是否为运算符
+/*
+* 判断字符是否为运算符
+* @param ch 待判断的字符
+*/
 int is_operator(char ch){
     return (ch == '+' || ch == '-' || ch == '*' || ch == '/');
 }
 
-// 辅助函数 -- 判断运算符号优先级(数字越大表明优先级越高)
+/*
+* 获取运算符的优先级（数字越大表明优先级越高）
+* @param operator_char 运算符字符
+*/
 int get_priority(char operator_char){
     switch(operator_char){
         case '+':
@@ -183,7 +215,11 @@ int get_priority(char operator_char){
             或者栈空或栈顶为左括号为止，然后再将当前运算符入栈。
 */
 
-// 中缀表达式转后缀表达式算法 -- [infix]：中缀表达式 [postfix]：转换后的后缀表达式
+/*
+* 中缀表达式转后缀表达式算法
+* @param infix 中缀表达式
+* @param postfix 用于存储转换后的后缀表达式
+*/
 void infix_to_postfix(char* infix, char* postfix){
     // 初始化一个栈承载运算符
     SeqStack* operator_stack = init_SeqStack();

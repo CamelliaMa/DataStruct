@@ -20,7 +20,9 @@ typedef struct{
     int front,rear;              // 队头指针 | 队尾指针
 }SeqQue;
 
-// 初始化队列
+/*
+* 初始化顺序队列 -- 动态分配内存并初始化队头队尾指针
+*/
 SeqQue* init_SeqQue(){
     // 申请队列内存
     SeqQue* que = (SeqQue *)malloc(sizeof(SeqQue));
@@ -39,17 +41,27 @@ SeqQue* init_SeqQue(){
     return que;
 }
 
-// 判断队列是否为空
+/*
+* 判断队列是否为空
+* @param que 操作的队列
+*/
 int que_IsEmpty(SeqQue* que){
     return (que->front == que->rear) ? SUCCESS : FAILURE;
 }
 
-// 判断队列是否为满
+/*
+* 判断队列是否已满
+* @param que 操作的队列
+*/
 int que_IsFull(SeqQue* que){
     return ((que->rear + 1)%MAX_SIZE == que->front) ? SUCCESS : FAILURE;
 }
 
-// 入队 -- 循环队列
+/*
+* 元素入队 -- 循环队列
+* @param que 操作的队列
+* @param en_data 入队的数据元素
+*/
 int en_SeqQue(SeqQue* que,ELEMENT_TYPE en_data){
     if(que_IsFull(que)){
         printf("队列已满!\n");
@@ -61,7 +73,11 @@ int en_SeqQue(SeqQue* que,ELEMENT_TYPE en_data){
     return SUCCESS;
 }
 
-// 出队
+/*
+* 元素出队
+* @param que 操作的队列
+* @param de_data 用于接收出队的元素
+*/
 int de_SeqQue(SeqQue* que,ELEMENT_TYPE* de_data){
     if(que_IsEmpty(que)){
         printf("队列为空!\n");
@@ -73,7 +89,11 @@ int de_SeqQue(SeqQue* que,ELEMENT_TYPE* de_data){
     return SUCCESS;
 }
 
-// 获取队头元素
+/*
+* 获取队头元素
+* @param que 操作的队列
+* @param front_data 用于接收队头元素
+*/
 int select_SeqQueFront(SeqQue* que,ELEMENT_TYPE* front_data){
     if(que_IsEmpty(que)){
         printf("队列为空!\n");
@@ -83,7 +103,10 @@ int select_SeqQueFront(SeqQue* que,ELEMENT_TYPE* front_data){
     return SUCCESS;
 }
 
-// 获取队列长度
+/*
+* 获取队列长度
+* @param que 操作的队列
+*/
 int select_SeqQueSize(SeqQue* que){
     if(que_IsEmpty(que)){
         printf("队列为空!\n");

@@ -17,7 +17,9 @@ typedef struct {
 }SeqList;
 
 
-// 初始化顺序表 -- 创建顺序表初始化并返回位置 -- 动态分配内存
+/*
+* 初始化顺序表 -- 动态分配内存并初始化长度
+*/
 SeqList* init_SeqList() {
     // 分配顺序表内存空间
     SeqList* list = (SeqList *)malloc(sizeof(SeqList));
@@ -37,7 +39,10 @@ SeqList* init_SeqList() {
     return list;
 }
 
-// 向顺序表中插入数据元素
+/*
+* 向顺序表中插入数据元素
+* @param list 操作的顺序表
+*/
 int insert_seqlist_element(SeqList* list, const ELEMENT_TYPE inserted_data, const int index){
     // 转换索引: base_1  --> base_0
     int insert_index = index - 1;
@@ -60,7 +65,12 @@ int insert_seqlist_element(SeqList* list, const ELEMENT_TYPE inserted_data, cons
     return SUCCESS;
 }
 
-// 删除顺序表中的元素
+/*
+* 删除顺序表中指定位置的元素
+* @param list 操作的顺序表
+* @param index 待删除元素的位置（从1开始）
+* @param delete_value 用于接收被删除的元素
+*/
 int delete_seqlist_element(SeqList* list, const int index, ELEMENT_TYPE* delete_value){
     // 转换索引: base_1  --> base_0
     int delete_index = index - 1;
@@ -82,7 +92,12 @@ int delete_seqlist_element(SeqList* list, const int index, ELEMENT_TYPE* delete_
     return SUCCESS;
 }
 
-// 修改顺序表规定位置的值
+/*
+* 修改顺序表指定位置的元素
+* @param list 操作的顺序表
+* @param index 待修改元素的位置（从1开始）
+* @param update_data 更新后的元素值
+*/
 int update_seqlist_element(SeqList* list,const int index,ELEMENT_TYPE update_data){
     // 转换索引: base_1  --> base_0
     int update_index = index - 1;
@@ -100,7 +115,11 @@ int update_seqlist_element(SeqList* list,const int index,ELEMENT_TYPE update_dat
     return SUCCESS;
 }
 
-// 查找数据元素位置 -- 返回第一个匹配的位置
+/*
+* 按值查找顺序表中的元素，返回第一个匹配的位置（从1开始）
+* @param list 操作的顺序表
+* @param select_value 待查找的元素值
+*/
 int select_seqlist_element(const SeqList* list,ELEMENT_TYPE select_value){
     for(int i = 0; i < list->size; i++){
         if(list->value[i] == select_value) return i+1;   // base_0 --> base_1
@@ -108,7 +127,10 @@ int select_seqlist_element(const SeqList* list,ELEMENT_TYPE select_value){
     return NOT_FOUND;
 }
 
-// 打印顺序表
+/*
+* 打印顺序表中的所有元素
+* @param list 操作的顺序表
+*/
 void print_list(const SeqList* list) {
     printf("完整顺序表为:\n|");
     for (int i = 0;i<list->size;i++) {
@@ -117,7 +139,10 @@ void print_list(const SeqList* list) {
     printf("\n");
 }
 
-// 释放顺序表内存
+/*
+* 释放顺序表占用的内存
+* @param list 待释放的顺序表
+*/
 int free_list(SeqList* list) {
     if (list->value != NULL) {
         free(list->value);

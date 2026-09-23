@@ -15,7 +15,9 @@ typedef struct list_node{
     struct list_node* next;         // 链表指针域 -- 用于指向下一节点
 }list_node, *LinkList;              // 前者指向普通节点，后者指向整条链表的头节点（代表整条链表）     LinkList = *listNode
 
-// 初始化链表 -- 带头节点
+/*
+* 初始化链表 -- 创建带头节点的空链表
+*/
 LinkList init_linkList(){
     // 申请一个节点的内存作为链表头节点（即为整条链表的起始节点）
     /*
@@ -31,7 +33,12 @@ LinkList init_linkList(){
     return head;
 }
 
-// 向链表内插入新节点 -- 按位序插入
+/*
+* 向链表指定位置插入新节点
+* @param list 操作的链表
+* @param index 插入位置（从1开始）
+* @param inserted_data 插入的数据元素
+*/
 int insert_linklist_node(LinkList list, const int index, const ELEMENT_TYPE inserted_data){
     // 转化索引：base_1 --> base_0
     int insert_index = index - 1;
@@ -62,7 +69,12 @@ int insert_linklist_node(LinkList list, const int index, const ELEMENT_TYPE inse
     return SUCCESS;
 }
 
-// 删除链表节点
+/*
+* 删除链表指定位置的节点
+* @param list 操作的链表
+* @param index 待删除节点的位置（从1开始）
+* @param deleted_value 用于接收被删除节点的数据
+*/
 int delete_linklist_node(LinkList list,int index,ELEMENT_TYPE* deleted_value){
     // 转化索引：base_1 --> base_0
     int delete_index = index - 1;
@@ -92,7 +104,11 @@ int delete_linklist_node(LinkList list,int index,ELEMENT_TYPE* deleted_value){
     return SUCCESS;
 }
 
-// 按位查找链表节点
+/*
+* 按位序查找链表节点
+* @param list 操作的链表
+* @param index 查找的位置（从1开始）
+*/
 list_node* select_listnode_by_index(const LinkList list,const int index){
     // 转化索引：base_1 --> base_0
     int select_index = index - 1;
@@ -116,7 +132,11 @@ list_node* select_listnode_by_index(const LinkList list,const int index){
     return current_node;
 }
 
-// 按值查找链表节点 -- 返回链表中第一个匹配的节点索引
+/*
+* 按值查找链表节点，返回第一个匹配节点的位序
+* @param list 操作的链表
+* @param select_data 待查找的数据
+*/
 int select_listnode_by_value(const LinkList list,const ELEMENT_TYPE select_data){
     // 遍历寻找
     list_node* current_node = list->next;   // 头节点不存储数据，直接跳过
@@ -130,7 +150,10 @@ int select_listnode_by_value(const LinkList list,const ELEMENT_TYPE select_data)
     return current_index + 1;     // 转换索引：base_0 --> base_1
 }
 
-// 打印链表
+/*
+* 打印链表中的所有节点
+* @param list 操作的链表
+*/
 void print_linklist(LinkList list){
     list_node* current_node = list->next;       // 跳过头节点
     printf("[Head]-->");
@@ -141,7 +164,10 @@ void print_linklist(LinkList list){
     printf("NULL\n");
 }
 
-// 销毁链表
+/*
+* 销毁链表，释放所有节点占用的内存
+* @param list 待销毁的链表
+*/
 void destory_linklist(LinkList list){
     /*
         销毁链表的策略为：
@@ -167,7 +193,9 @@ void destory_linklist(LinkList list){
     单链表从一个节点出发只能找到相对应的后继节点，循环链表则可以找到所有
     节点
 */
-// 初始化循环单链表
+/*
+* 初始化循环单链表 -- 头节点的next指针指向自身
+*/
 LinkList init_C_LinkList(){
     // 申请链表动态内存
     list_node*  head = (list_node *)malloc(sizeof(list_node));
@@ -179,12 +207,19 @@ LinkList init_C_LinkList(){
     return head;
 }
 
-// 循环链表判空 -- 判断头节点的next指针是否指向自己
+/*
+* 判断循环链表是否为空
+* @param c_list 操作的循环链表
+*/
 int is_empty(LinkList c_list){
     return (c_list->next == c_list) ? SUCCESS : FAILURE;
 }
 
-// 判断节点是否为最后一个节点 -- 判断下一节点是不是头节点
+/*
+* 判断节点是否为循环链表的最后一个节点
+* @param c_list 操作的循环链表
+* @param node 待判断的节点
+*/
 int is_tail(LinkList c_list, list_node* node){
     return (node->next == c_list) ? SUCCESS : FAILURE;
 }

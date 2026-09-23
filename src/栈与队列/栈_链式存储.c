@@ -25,7 +25,9 @@ typedef struct{
     int size;                       // 节点数量
 }LinkStack;
 
-// 初始化链栈
+/*
+* 初始化链栈 -- 不带头节点
+*/
 LinkStack* init_LinkStack(){
     // 分配内存
     LinkStack* stack = (LinkStack *)malloc(sizeof(LinkStack));
@@ -39,12 +41,19 @@ LinkStack* init_LinkStack(){
     return stack;
 }
 
-// 判断栈是否为空
+/*
+* 判断链栈是否为空
+* @param stack 操作的链栈
+*/
 int stack_IsEmpty(LinkStack* stack){
     return stack->StackTop == NULL;
 }
 
-// 入栈
+/*
+* 元素入栈
+* @param stack 操作的链栈
+* @param push_data 入栈的数据元素
+*/
 int push_LinkStack(LinkStack* stack,ELEMENT_TYPE push_data){
     // 创建新节点
     stack_node* new_node = (stack_node *)malloc(sizeof(stack_node));
@@ -60,7 +69,11 @@ int push_LinkStack(LinkStack* stack,ELEMENT_TYPE push_data){
     return SUCCESS;
 }
 
-// 出栈
+/*
+* 元素出栈
+* @param stack 操作的链栈
+* @param pop_data 用于接收出栈的元素
+*/
 int pop_LinkStack(LinkStack* stack,ELEMENT_TYPE* pop_data){
     // 检查栈是否为空
     if(stack_IsEmpty(stack)){
@@ -75,7 +88,11 @@ int pop_LinkStack(LinkStack* stack,ELEMENT_TYPE* pop_data){
     return SUCCESS;
 }
 
-// 获取栈顶元素
+/*
+* 获取链栈的栈顶元素
+* @param stack 操作的链栈
+* @param top_data 用于接收栈顶元素
+*/
 int select_LinKStackTop(LinkStack* stack,ELEMENT_TYPE* top_data){
     // 检查栈是否为空
     if(stack_IsEmpty(stack)){
@@ -86,7 +103,10 @@ int select_LinKStackTop(LinkStack* stack,ELEMENT_TYPE* top_data){
     return SUCCESS;
 }
 
-// 释放栈内存 -- 不断出栈进行销毁
+/*
+* 释放链栈占用的内存 -- 不断出栈进行销毁
+* @param stack 待释放的链栈
+*/
 void free_LinkStack(LinkStack* stack){
     stack_node* current_node = NULL;
     while(stack->StackTop){
@@ -98,6 +118,9 @@ void free_LinkStack(LinkStack* stack){
     printf("\n销毁成功!\n");
 }
 
+/*
+* 主函数 -- 链栈操作演示
+*/
 int main(){
     LinkStack* stack = init_LinkStack();
     for(int i = 1;i<=10;i++){

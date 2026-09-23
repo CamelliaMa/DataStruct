@@ -17,7 +17,9 @@ typedef struct D_list_node{
 }D_list_node,*D_LinkList;           // 前者指向节点， 后者指向头节点代表整条双向链表
 
 
-// 初始化双向链表 -- 带头节点
+/*
+* 初始化双向链表 -- 创建带头节点的空链表
+*/
 D_LinkList init_D_LinkList(){
     // 申请头节点内存
     D_list_node* head = (D_list_node *)malloc(sizeof(D_list_node));
@@ -30,7 +32,11 @@ D_LinkList init_D_LinkList(){
     return head;
 } 
 
-// 双向链表插入节点 -- 后插
+/*
+* 在双向链表指定节点之后插入新节点
+* @param prior_node 插入位置的前驱节点
+* @param insert_node 待插入的节点
+*/
 int insert_D_LinkList_node(D_list_node* prior_node,D_list_node* insert_node){
     // 检查节点是否为空节点
     if(prior_node == NULL || insert_node == NULL){
@@ -47,7 +53,10 @@ int insert_D_LinkList_node(D_list_node* prior_node,D_list_node* insert_node){
     return SUCCESS;
 }
 
-// 删除指定节点的后继节点
+/*
+* 删除指定节点的后继节点
+* @param node 操作的节点
+*/
 int delete_next_node(D_list_node* node){
     if(node == NULL){      // 检查节点是否为空
         printf("节点为空!\n");
@@ -66,7 +75,10 @@ int delete_next_node(D_list_node* node){
     return SUCCESS;
 }
 
-// 打印链表 -- 指定节点
+/*
+* 打印指定节点的前驱节点和后继节点
+* @param node 指定的节点
+*/
 void print_list(D_list_node* node){
     if(node == NULL){      // 检查节点是否为空
         printf("节点为空!\n");
@@ -97,7 +109,9 @@ void print_list(D_list_node* node){
     表头节点的prior指针指向表尾节点 | 表尾节点的next指针指向表头节点
 */
 
-// 初始化
+/*
+* 初始化双向循环链表
+*/
 D_LinkList init_D_C_LinkList(){
     D_list_node* head = (D_list_node *)malloc(sizeof(D_list_node));
     if(head == NULL) return NULL;
@@ -107,17 +121,28 @@ D_LinkList init_D_C_LinkList(){
     return head;
 }
 
-// 判空操作
+/*
+* 判断双向循环链表是否为空
+* @param d_c_list 操作的双向循环链表
+*/
 int is_empty(D_LinkList d_c_list){
     return(d_c_list->next == d_c_list ) ? SUCCESS : FAILURE;
 }
 
-// 判断节点是否为最后一个节点 -- 判断下一节点是不是头节点
+/*
+* 判断节点是否为双向循环链表的最后一个节点
+* @param d_c_list 操作的双向循环链表
+* @param node 待判断的节点
+*/
 int is_tail(D_LinkList d_c_list, D_list_node* node){
     return (node->next == d_c_list) ? SUCCESS : FAILURE;
 }
 
-// 插入节点操作
+/*
+* 在双向循环链表指定节点之后插入新节点
+* @param prior_node 插入位置的前驱节点
+* @param insert_node 待插入的节点
+*/
 int insert_D_C_LinkList_node(D_list_node* prior_node,D_list_node* insert_node){
     if(prior_node == NULL || insert_node == NULL) return FAILURE;
     // 执行插入操作
@@ -131,7 +156,10 @@ int insert_D_C_LinkList_node(D_list_node* prior_node,D_list_node* insert_node){
     return SUCCESS;
 }
 
-// 删除指定节点的后继节点
+/*
+* 删除双向循环链表中指定节点的后继节点
+* @param prior_node 被删除节点的前驱节点
+*/
 int delete_D_C_LinkList_node(D_list_node* prior_node){
     D_list_node* delete_node = prior_node->next;
     // 执行插入操作

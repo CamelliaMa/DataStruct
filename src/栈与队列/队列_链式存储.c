@@ -20,7 +20,9 @@ typedef struct{
     que_node* rear;         // 队尾指针
 }LinkQue;
 
-// 初始化队列 -- 不带头节点
+/*
+* 初始化队列 -- 不带头节点
+*/
 LinkQue* init_LinkQue(){
     LinkQue* que = (LinkQue *)malloc(sizeof(LinkQue));
     if(que == NULL){
@@ -32,12 +34,19 @@ LinkQue* init_LinkQue(){
     return que;
 }
 
-// 检查队列是否为空
+/*
+* 判断队列是否为空
+* @param que 操作的队列
+*/
 int que_IsEmpty(LinkQue* que){
     return (que->front == NULL) ? SUCCESS : FAILURE;
 }
 
-// 入队
+/*
+* 元素入队
+* @param que 操作的队列
+* @param en_data 入队的数据元素
+*/
 int en_LinkQue(LinkQue* que,ELEMENT_TYPE en_data){
     // 申请新节点内存
     que_node* new_node = (que_node *)malloc(sizeof(que_node));
@@ -55,7 +64,11 @@ int en_LinkQue(LinkQue* que,ELEMENT_TYPE en_data){
     return SUCCESS;
 }
 
-// 出队
+/*
+* 元素出队
+* @param que 操作的队列
+* @param de_data 用于接收出队的元素
+*/
 int de_LinkQue(LinkQue* que,ELEMENT_TYPE* de_data){
     if(queue_IsEmpty(que)){
         printf("队列为空!\n");
@@ -70,7 +83,11 @@ int de_LinkQue(LinkQue* que,ELEMENT_TYPE* de_data){
     return SUCCESS;
 }
 
-// 获取队头元素
+/*
+* 获取队头元素
+* @param que 操作的队列
+* @param front_data 用于接收队头元素
+*/
 int select_LinkQueFront(LinkQue* que,ELEMENT_TYPE* front_data){
     if(queue_IsEmpty(que)){
         printf("队列为空!\n");
