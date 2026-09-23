@@ -4,7 +4,7 @@
     {
       "type": "cppbuild",
       "label": "g++",
-      "command": "E:\\Environment\\MinGW\\bin\\g++.exe",
+      "command": "g++.exe",
       "args": [
         "-g",
         "${file}",

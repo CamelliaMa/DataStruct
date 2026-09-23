@@ -35,7 +35,7 @@ DataStruct
 | `launch.json` | `(gdb) Launch` 调试配置：先执行 `g++` 预编译任务，再用 `gdb` 调试 `bin` 下对应的可执行文件，使用外部控制台 |
 | `settings.json` | 文件关联设置（`stdio.h`/`stdlib.h`/`string.h` 识别为 C 等） |
 
-【注】<br> **需将 MinGW 安装至 `E:\Environment\MinGW`，或按实际路径修改上述配置中的编译器与调试器路径**
+【注】<br> **需安装 MinGW 并配置环境变量path，或修改配置文件 gdb.exe 和 g++.exe 相关项为具体目录**
 
 
 
