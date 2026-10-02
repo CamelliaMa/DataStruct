@@ -39,7 +39,7 @@ int simple_attern_match(char* S,char* T){
 * @param next next数组指针 
 * @param str  模板串指针
 */
-void get_next(int *next,char* str){
+void get_next(int* next,char* str){
     int i = 1,j = 0;
     next[1] = 0;
     while(i < strlen(str)){
@@ -52,6 +52,25 @@ void get_next(int *next,char* str){
         }
     }
 }
+
+/*
+* 辅助函数 -- 构建nextval数组
+* @param nextval nextval数组指针 
+* @param str  模板串指针
+*/
+void get_nextval(int* nextval,char* str){
+    int i = 1,j = 0;
+    nextval[1] = 0;
+    while(i < strlen(str)){
+        if(j == 0 || str[i] == str[j]){
+            i++;
+            j++;
+            if(str[i] != str[j]) nextval[i] = j;
+            else nextval[i] = nextval[j];
+        }else j = nextval[j];
+    }
+}
+
 
 /*
 * KMP匹配算法
